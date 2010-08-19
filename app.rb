@@ -44,7 +44,7 @@ class App < Sinatra::Base
 
   post '/' do
     begin
-      @html = html2haml(params[:source])
+      @html = html2haml(params[:source], !!params[:html5])
     rescue Haml::SyntaxError => e
       case e.message
       when 'Invalid doctype'
@@ -63,8 +63,8 @@ class App < Sinatra::Base
   end
 
   private
-  def html2haml(html)
+  def html2haml(html, html5 = false)
     haml = Haml::HTML.new(html.gsub(/\t/, '    ')).render
-    Haml::Engine.new(haml, :attr_wrapper => '"').render
+    Haml::Engine.new(haml, :attr_wrapper => '"', :format => html5 ? :html5 : :xhtml ).render
   end
 end

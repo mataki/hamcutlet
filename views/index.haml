@@ -2,6 +2,9 @@
   %h2 ここにインデントを綺麗に揃えたいHTMLをコピペ
   %form{:name => 'pan', :id => 'pan', :action => '/', :method => 'post'}
     %textarea{:name => 'source', :rows => 4, :cols => 40, :title => '&lt;p&gt;ここにHTMLをコピペ&lt;/p&gt;'}
+    .html5check
+      %input{:type => "checkbox", :name => "html5", :id => "html5"}
+      %label{:for => "html5"} HTML5
     .submit
       %a{:href => 'javascript:return void(0)', :onclick => "$('#pan').submit()"} COOK!
 #about.section
